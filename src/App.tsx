@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import BlogIndex from "./pages/BlogIndex";
+import BlogPost from "./pages/BlogPost";
 import "./App.css";
 
 // Temporary home page.
@@ -20,7 +21,7 @@ function HomePage() {
   );
 }
 
-// Configure the application's routes.
+// Configure static and dynamic routes.
 export default function App() {
   return (
     <BrowserRouter>
@@ -34,7 +35,10 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogIndex />} />
 
-          {/* Unknown URLs temporarily redirect home. */}
+          {/* The slug identifies which blog post to display. */}
+          <Route path="/blog/:slug" element={<BlogPost />} />
+
+          {/* Unknown routes temporarily redirect home. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
