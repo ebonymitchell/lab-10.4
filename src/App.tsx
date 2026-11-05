@@ -6,7 +6,7 @@ import {
   Routes,
 } from "react-router-dom";
 
-import { posts } from "./lib/posts";
+import BlogIndex from "./pages/BlogIndex";
 import "./App.css";
 
 // Temporary home page.
@@ -20,28 +20,7 @@ function HomePage() {
   );
 }
 
-// Display mock blog data to verify our posts are available.
-function BlogPage() {
-  return (
-    <section>
-      <h1>Blog Posts</h1>
-
-      <p>Available articles: {posts.length}</p>
-
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-            <small>Slug: {post.slug}</small>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-// Configure the application's current routes.
+// Configure the application's routes.
 export default function App() {
   return (
     <BrowserRouter>
@@ -53,9 +32,9 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<BlogIndex />} />
 
-          {/* Redirect unknown routes to the homepage for now. */}
+          {/* Unknown URLs temporarily redirect home. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
