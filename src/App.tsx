@@ -8,6 +8,7 @@ import {
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
@@ -22,9 +23,10 @@ function HomePage() {
   );
 }
 
-// Temporary component for testing authentication state.
+// Temporary authentication status display.
+// We will replace this with conditional navigation in Commit 9.
 function AuthStatus() {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <section>
@@ -35,20 +37,20 @@ function AuthStatus() {
         </strong>
       </p>
 
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <button type="button" onClick={logout}>
           Log Out
         </button>
-      ) : (
-        <button type="button" onClick={login}>
-          Log In
-        </button>
+      )}
+
+      {!isAuthenticated && (
+        <Link to="/login">Go to Login</Link>
       )}
     </section>
   );
 }
 
-// Define the application's routes and shared layout.
+// Define routes and shared application layout.
 function AppContent() {
   return (
     <div className="app">
@@ -63,13 +65,14 @@ function AppContent() {
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
 }
 
-// Wrap the application in the authentication provider.
+// Make authentication available throughout the application.
 export default function App() {
   return (
     <BrowserRouter>
