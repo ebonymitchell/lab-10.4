@@ -5,7 +5,8 @@ import {
   Routes,
 } from "react-router-dom";
 
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import Navbar from "./components/Navbar";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 import Login from "./pages/Login";
@@ -23,43 +24,11 @@ function HomePage() {
   );
 }
 
-// Temporary authentication status display.
-// We will replace this with conditional navigation in Commit 9.
-function AuthStatus() {
-  const { isAuthenticated, logout } = useAuth();
-
-  return (
-    <section>
-      <p>
-        Authentication status:{" "}
-        <strong>
-          {isAuthenticated ? "Logged In" : "Logged Out"}
-        </strong>
-      </p>
-
-      {isAuthenticated && (
-        <button type="button" onClick={logout}>
-          Log Out
-        </button>
-      )}
-
-      {!isAuthenticated && (
-        <Link to="/login">Go to Login</Link>
-      )}
-    </section>
-  );
-}
-
-// Define routes and shared application layout.
+// Define routes and the shared application layout.
 function AppContent() {
   return (
     <div className="app">
-      <nav aria-label="Main navigation">
-        <Link to="/">Home</Link>
-        <Link to="/blog">Blog</Link>
-      </nav>
-
-      <AuthStatus />
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -72,7 +41,7 @@ function AppContent() {
   );
 }
 
-// Make authentication available throughout the application.
+// Provide authentication state to all child components.
 export default function App() {
   return (
     <BrowserRouter>
