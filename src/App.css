@@ -1,0 +1,168 @@
+/* Center the application and limit content width. */
+.app {
+    width: min(100% - 40px, 900px);
+    margin: 0 auto;
+    padding: 28px 0 80px;
+}
+
+/* Style the main navigation. */
+.app>nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #deded8;
+}
+
+/* Navigation links and buttons share a consistent appearance. */
+.app>nav a,
+.app>nav button {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #43544e;
+}
+
+/* Keep the navigation logout button understated. */
+.app>nav button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.app>nav a:hover,
+.app>nav button:hover {
+    color: #172c24;
+}
+
+/* General page content. */
+.app>section,
+.app>article {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Main page headings. */
+h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin: 0 0 18px;
+    color: #23382e;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 0 0 12px;
+}
+
+section>p,
+article>p {
+    color: #64716b;
+    font-size: 1.05rem;
+}
+
+/* Remove list markers from the blog index. */
+section>ul {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0;
+}
+
+/* Space individual blog entries. */
+section>ul>li {
+    margin-bottom: 20px;
+}
+
+/* Present each blog post as an editorial card. */
+section>ul>li>article {
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e8e7e1;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgb(30 45 35 / 4%);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Provide subtle feedback when hovering over a post. */
+section>ul>li>article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgb(30 45 35 / 8%);
+}
+
+/* Style linked article titles. */
+section>ul>li h2 a {
+    color: #284b3d;
+}
+
+section>ul>li h2 a:hover {
+    color: #557b66;
+}
+
+/* Improve spacing inside individual blog posts. */
+.app>article {
+    background: #ffffff;
+    padding: 40px;
+    border: 1px solid #e8e7e1;
+    border-radius: 14px;
+}
+
+.app>article>a {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-weight: 600;
+}
+
+/* Style buttons on the login page and elsewhere. */
+section button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #315846;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+section button:hover {
+    background-color: #203c30;
+}
+
+/* Give login and admin pages a consistent card layout. */
+.login-page,
+.admin-page,
+.not-found {
+    padding: 40px;
+    background: #ffffff;
+    border: 1px solid #e8e7e1;
+    border-radius: 14px;
+}
+
+/* Maintain comfortable spacing on smaller screens. */
+@media (max-width: 600px) {
+    .app {
+        width: min(100% - 28px, 900px);
+        padding-top: 12px;
+    }
+
+    .app>nav {
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    section>ul>li>article,
+    .app>article,
+    .login-page,
+    .admin-page,
+    .not-found {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+}

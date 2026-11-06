@@ -1,0 +1,59 @@
+/* Import a clean, modern font for the blog. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+/* Establish consistent sizing throughout the application. */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "DM Sans", sans-serif;
+    color: #263238;
+    background-color: #f8f7f4;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Remove browser default margins. */
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+/* Give headings a distinctive editorial appearance. */
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    line-height: 1.25;
+}
+
+/* Improve readability for longer articles. */
+p {
+    line-height: 1.8;
+}
+
+/* Use a consistent font for interactive elements. */
+button,
+input {
+    font: inherit;
+}
+
+/* Apply consistent link styling. */
+a {
+    color: #385c50;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #203b32;
+}
+
+/* Provide visible focus indicators for keyboard users. */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #8ba99b;
+    outline-offset: 4px;
+}
