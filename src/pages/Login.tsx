@@ -1,20 +1,34 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import {
+    Navigate,
+    useLocation,
+    useNavigate,
+} from "react-router-dom";
+
 import { useAuth } from "../contexts/AuthContext";
 
-// Display a simple login page using our authentication context.
+// Display a login page and handle authentication redirects.
 export default function Login() {
     const { isAuthenticated, login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // Simulate authentication and redirect to the blog.
+    // Read the route the visitor originally attempted to access.
+    // Default to the blog when no previous destination exists.
+    const from = location.state?.from;
+    const destination =
+        from && typeof from.pathname === "string"
+            ? `${from.pathname}${from.search ?? ""}${from.hash ?? ""}`
+            : "/blog";
+
+    // Simulate login and return to the intended destination.
     function handleLogin() {
         login();
-        navigate("/blog", { replace: true });
+        navigate(destination, { replace: true });
     }
 
-    // Prevent authenticated users from seeing the login page.
+    // Already authenticated visitors do not need to log in again.
     if (isAuthenticated) {
-        return <Navigate to="/blog" replace />;
+        return <Navigate to={destination} replace />;
     }
 
     return (

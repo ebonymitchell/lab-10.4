@@ -7,13 +7,15 @@ import {
 
 import { AuthProvider } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Admin from "./pages/Admin";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
-// Temporary home page.
+// Public home page.
 function HomePage() {
   return (
     <section>
@@ -24,24 +26,32 @@ function HomePage() {
   );
 }
 
-// Define routes and the shared application layout.
+// Define public and protected routes.
 function AppContent() {
   return (
     <div className="app">
       <Navbar />
 
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/login" element={<Login />} />
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
+
+        {/* Unknown routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
 }
 
-// Provide authentication state to all child components.
+// Provide routing and authentication to the application.
 export default function App() {
   return (
     <BrowserRouter>
