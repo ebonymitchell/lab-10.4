@@ -1,13 +1,13 @@
 import {
   BrowserRouter,
   Link,
-  Navigate,
   Route,
   Routes,
 } from "react-router-dom";
 
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import NotFound from "./pages/NotFound";
 import "./App.css";
 
 // Temporary home page.
@@ -21,7 +21,7 @@ function HomePage() {
   );
 }
 
-// Configure static and dynamic routes.
+// Configure the application's static and dynamic routes.
 export default function App() {
   return (
     <BrowserRouter>
@@ -35,11 +35,11 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogIndex />} />
 
-          {/* The slug identifies which blog post to display. */}
+          {/* Render a post based on its URL slug. */}
           <Route path="/blog/:slug" element={<BlogPost />} />
 
-          {/* Unknown routes temporarily redirect home. */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Render the 404 page for unmatched application URLs. */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
